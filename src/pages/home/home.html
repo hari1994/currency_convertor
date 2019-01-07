@@ -1,14 +1,40 @@
-<ion-header>
+<ion-header style="background:aqua">
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
+    <ion-title style="text-align: center">
+      Curreny Convertor
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content padding style="background-image: url(assets/imgs/1.jpg);
+-webkit-background-size: cover;
+-moz-background-size: cover;
+background-size: cover;">
+<ion-card padding style="margin-top: 20%">
+  <form [formGroup]="currencyForm">
+    <ion-list>
+      <ion-item >
+        <ion-label>Form Currency</ion-label>
+        <ion-select *ngIf="values.length > 0" formControlName="currencyform" name="currencyform">
+          <ion-option [value]=val.id *ngFor="let val of values">{{val.currencyName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label col-6>Amount</ion-label>
+        <ion-input type="number" formControlName="number" name="number"></ion-input>
+      </ion-item>
+      <div class="error" *ngIf="currencyForm.get('number').hasError('required') && currencyForm.get('number').touched">
+          Amount is required
+        </div>
+      <ion-item>
+        <ion-label>To Currency</ion-label>
+        <ion-select>
+          <ion-option>INR</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list><br><br>
+  </form>
+  <button ion-button style="display: block; margin: auto" color="secondary" (click)=Formdata()>Convertor</button>
+  </ion-card>
 </ion-content>
